@@ -2,17 +2,17 @@ Rails.application.routes.draw do
   resources :interfaces
   resources :users do
     collection do
-      get 'dashboard'
-      get 'notifications'
       get 'support'
       get 'plan'
       get 'billing'
       get 'notifications'
       get 'support'
-      get 'profile'
     end
 
     member do
+      get 'profile'
+      get 'notifications'
+      get 'dashboard'
       get 'billing'
       get 'plan'
     end

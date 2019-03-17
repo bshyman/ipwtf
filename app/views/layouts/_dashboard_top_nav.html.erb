@@ -101,7 +101,7 @@
       <li class="nav-item dropdown user-nav">
         <a class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <% if user_signed_in? %>
-            <%= image_tag(current_user.avatar, height:'120', width:'120', class: "avatar rounded-circle")%>
+            <%= image_tag(current_user.avatar, height:'64', width:'64', class: "avatar rounded-circle")%>
             <% else %>
             <%= random_avatar 64,  class: "avatar rounded-circle"%>
             <% end %>
