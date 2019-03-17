@@ -13,6 +13,9 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
+//= require bootbox
+//= require bootstrap-notify
+
 
 //= require rrt
 

@@ -20,6 +20,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
 gem 'mysql2', '~> 0.3.18'
+gem 'bootbox-rails', '~>0.4'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'
