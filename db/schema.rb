@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190317051732) do
+ActiveRecord::Schema.define(version: 20190317072726) do
 
   create_table "interfaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "ip", limit: 15
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20190317051732) do
     t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
   end
 
 end

@@ -100,16 +100,21 @@
       </li>
       <li class="nav-item dropdown user-nav">
         <a class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= random_avatar 34, "avatar rounded-circle" %>
+          <% if user_signed_in? %>
+            <%= image_tag(current_user.avatar, height:'120', width:'120', class: "avatar rounded-circle")%>
+            <% else %>
+            <%= random_avatar 64,  class: "avatar rounded-circle"%>
+            <% end %>
+
           <span class="caret caret-light"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
           <li class="dropdown-item text-center">
             <div class="card">
               <div class="card-body">
-                <%= random_avatar 120, "avatar img-rounded" %>
+                <span class="avatar img-rounded"><%= user_signed_in? ? image_tag(current_user.avatar) : random_avatar(120) %></span>
                 <p class="m0 p0 d-block">
-                  Fill Murray
+                  <%= user_signed_in? ? current_user.name : 'Fill' %>
                 </p>
                 <p class="small m0 p0">Premium Account</p>
               </div>
@@ -120,9 +125,11 @@
                   </a>
                 </div>
                 <div>
-                  <a href="#" class="btn ">
-                    Log Out
-                  </a>
+                  <% if user_signed_in? %>
+                    <%= link_to 'Logout', signout_path, class: 'btn' %>
+                  <% else %>
+                    <%= link_to 'Login', signin_path, class: 'btn' %>
+                  <% end %>
                 </div>
               </div>
             </div>
