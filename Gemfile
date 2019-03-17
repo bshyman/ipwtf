@@ -16,6 +16,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'jquery-rails'
+gem 'mysql2', '~> 0.3.18'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -23,10 +27,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-  gem 'jquery-rails'
-  gem 'mysql2', '~> 0.3.18'
-  gem 'omniauth'
-  gem 'omniauth-google-oauth2'
   gem 'better_errors'
   gem 'capistrano', '~> 3.0.1'
   gem 'capistrano-bundler'
@@ -45,6 +45,12 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+end
+
+group :test do
+  gem 'minitest-rails'
+  gem 'minitest-reporters'
+
 end
 
 gem 'jquery-rails'
