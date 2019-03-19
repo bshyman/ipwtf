@@ -12,6 +12,18 @@
               <span>Profile</span>
             <% end %>
           </li>
+          <li class="nav-item">
+            <%= link_to interfaces_path, class: 'nav-link' do %>
+              <%= fa_icon_tag('server') %>
+              <span>Interfaces</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to dashboard_user_path(current_user.id), class: 'nav-link' do %>
+              <%= fa_icon_tag('dashboard') %>
+              <span>Dashboard</span>
+            <% end %>
+          </li>
         <% end %>
         <li class="nav-item">
           <a class="nav-link" href="#" aria-expanded="false">

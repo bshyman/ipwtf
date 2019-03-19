@@ -1,10 +1,12 @@
 class InterfacesController < ApplicationController
-  layout "scaffold"
+  layout "application"
+  layout 'sidenav'
 
   before_action :set_interface, only: [:show, :edit, :update, :destroy]
 
   # GET /interfaces
   def index
+    @body_class = 'with-sidebar show-sidebar'
     @interfaces = Interface.all
   end
 
@@ -24,8 +26,8 @@ class InterfacesController < ApplicationController
   # POST /interfaces
   def create
     @interface = Interface.new(interface_params)
-
-    if @interface.save
+    @interface.assign_attributes(user_id: current_user.id, last_responded_at: Time.current)
+    if @interface.save!
       redirect_to @interface, notice: 'Interface was successfully created.'
     else
       render :new
@@ -34,7 +36,8 @@ class InterfacesController < ApplicationController
 
   # PATCH/PUT /interfaces/1
   def update
-    if @interface.update(interface_params)
+    @interface.assign_attributes(user_id: current_user.id, last_responded_at: Time.current)
+    if @interface.update!(interface_params)
       redirect_to @interface, notice: 'Interface was successfully updated.'
     else
       render :edit
@@ -55,6 +58,6 @@ class InterfacesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def interface_params
-      params.fetch(:interface, {})
+      params.require(:interface).permit(:ip, :ddns, :port)
     end
 end
