@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home/landing'
+
   resources :interfaces
   resources :users do
     collection do
@@ -23,5 +25,5 @@ Rails.application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
 
-  root to: 'users#dashboard'
+  root to: 'home#landing'
 end
