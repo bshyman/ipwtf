@@ -1,5 +1,19 @@
+require 'bcrypt'
+
 class User < ApplicationRecord
+  include BCrypt
   has_many :interfaces
+
+  OMNIAUTH_PASSWORD = 'do0DtUKGIP0g7uRKKV7uL7BTVHxzs89TDaEF7Lyo2j85N5yfYc'.freeze
+
+  def password
+    @password ||= Password.new(password_digest)
+  end
+
+  def password=(new_password)
+    @password            = Password.create(new_password)
+    self.password_digest = @password
+  end
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -10,7 +24,12 @@ class User < ApplicationRecord
       user.name       = auth.info.name
       user.provider   = auth['provider']
       user.uid        = auth['uid']
+      user.password   = OMNIAUTH_PASSWORD
     end
+  end
+
+  def name
+    self.first_name + ' ' + self.last_name
   end
 
 end

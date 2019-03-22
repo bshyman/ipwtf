@@ -38,6 +38,7 @@ group :development do
   gem 'foreman'
   gem 'rails_layout'
   gem 'binding_of_caller'
+  gem 'bcrypt'
 end
 
 group :development, :test do
