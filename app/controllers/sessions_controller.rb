@@ -3,6 +3,14 @@ class SessionsController < ApplicationController
   def login
     @user = User.find_by_email(params[:email])
     respond_to do |format|
+      format.html do
+        if @user.password === params[:password]
+          session[:user_id] = @user.id
+          render json: {success: @user.id}
+        else
+          redirect_to root_path
+        end
+      end
       format.json do
         if @user.nil?
           render json: {error: 'No user found with that email'}

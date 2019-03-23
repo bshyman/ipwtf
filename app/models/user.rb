@@ -4,8 +4,6 @@ class User < ApplicationRecord
   include BCrypt
   has_many :interfaces
 
-  OMNIAUTH_PASSWORD = 'do0DtUKGIP0g7uRKKV7uL7BTVHxzs89TDaEF7Lyo2j85N5yfYc'.freeze
-
   def password
     @password ||= Password.new(password_digest)
   end
@@ -24,7 +22,7 @@ class User < ApplicationRecord
       user.name       = auth.info.name
       user.provider   = auth['provider']
       user.uid        = auth['uid']
-      user.password   = OMNIAUTH_PASSWORD
+      user.password   = SecureRandom.hex(10)
     end
   end
 
