@@ -8,8 +8,6 @@ source "https://gems.rapidrailsthemes.com/gems" do
   gem "rrt", "~> 1.2.9"
 end
 
-ruby '2.4.1'
-gem 'rails', '~> 5.1.6', '>= 5.1.6.1'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -19,7 +17,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
-gem 'mysql2', '~> 0.3.18'
+# gem 'mysql2', '~> 0.3.18'
+gem 'pg'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
