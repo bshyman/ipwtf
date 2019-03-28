@@ -19,9 +19,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
-gem 'mysql2', '~> 0.3.18'
 gem 'bootbox-rails', '~>0.4'
-
+gem 'pg'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -56,6 +55,4 @@ group :test do
   gem 'minitest-reporters'
   gem 'fabrication'
   gem "minitest-rails-capybara"
-
-
 end

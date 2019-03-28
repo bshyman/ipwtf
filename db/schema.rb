@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20190321012926) do
 
-  create_table "interfaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "interfaces", force: :cascade do |t|
     t.string "ip", limit: 15
     t.string "scope"
     t.string "ddns"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20190321012926) do
     t.index ["user_id"], name: "index_interfaces_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
