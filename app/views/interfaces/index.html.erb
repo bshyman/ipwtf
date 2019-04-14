@@ -4,7 +4,6 @@
       <!-- component-title: Active Users Table -->
       <div class="card-header">
         <h6>Interfaces</h6>
-        <a class="btn btn-primary" data-toggle="modal" href="#new-interface-modal">Trigger modal</a>
 
         <%= link_to new_interface_path, class: 'btn btn-primary btn-circle add-interface' do %>
           Add Interface &nbsp;
@@ -22,7 +21,7 @@
             <th>DDNS</th>
             <th>Status</th>
             <th>Port</th>
-            <th>Action</th>
+            <th class="center">Actions</th>
           </tr>
           </thead>
 
@@ -30,14 +29,17 @@
           <% @interfaces.each do |interface| %>
             <tr>
               <td>1</td>
-              <td><strong><%= interface.ip %></strong></td>
+              <td><strong class="medtur"><%= interface.ip %></strong></td>
               <td><%= interface.ddns %></td>
-              <td><span class="badge badge-<%= interface.alive? ? 'success' : 'danger' %>"><%= interface.ui_life_status %></span></td>
+              <td>
+                <span class="badge badge-<%= interface.alive? ? 'success' : 'danger' %>"><%= interface.ui_life_status %></span>
+              </td>
               <td><%= interface.port %></td>
               <td>
-                <div class="btn-group btn-group-xs">
-                  <a data-toggle="tooltip" class="btn " data-original-title="Delete"><%= theme_icon_tag "trash" %></a>
-                  <a data-toggle="tooltip" class="btn " data-original-title="Edit"><%= theme_icon_tag "pencil-alt" %> </a>
+                <div class="center  btn-group-xs">
+                  <i class="fa fa-sticky-note fa-2x"></i>
+                  <i class=" center fa fa-pencil fa-2x middle"></i>
+                  <i class=" center fa fa-trash fa-2x"></i>
                 </div>
               </td>
             </tr>
@@ -51,9 +53,19 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  $(function(){
-    $('.add-interface').on('click', function(e){
+  $(function () {
+    $('.add-interface').on('click', function (e) {
     })
   })
 </script>
-
+<style>
+  .medtur {
+    color: mediumturquoise;
+  }
+  .fa {
+    color: mediumturquoise;
+  }
+  .middle {
+    margin: 0 20px;
+  }
+</style>
