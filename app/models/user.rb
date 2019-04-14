@@ -4,6 +4,10 @@ class User < ApplicationRecord
   include BCrypt
   has_many :interfaces
 
+  def full_name
+    first_name + ' ' + last_name
+  end
+
   def password
     @password ||= Password.new(password_digest)
   end
