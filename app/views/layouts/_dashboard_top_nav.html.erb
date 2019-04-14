@@ -60,16 +60,18 @@
             <div class="card">
               <div class="card-header text-center text-primary">
                   <strong>You have
-                    <span>2</span>
+                    <span>0</span>
                     notifications</strong>
               </div>
               <div class="list-group">
+                <% if current_user %>
+
                 <a href="#" class="list-group-item">
                   <div class="media">
                     <%= random_avatar 32, "d-flex mr-3 rounded-circle" %>
                     <div class="media-body">
-                      <p>My name is Inigo Montoya.</p>
-                      <small class="text-muted d-block">10 minutes ago</small>
+                      <p><%= current_user.full_name %> registered..</p>
+                      <small class="text-muted d-block"><%= current_user.created_at %></small>
                     </div>
                   </div>
                 </a>
@@ -86,6 +88,7 @@
                     <small class="text-muted">12 hours ago</small>
                   </span>
                 </a>
+                  <% end %>
               </div>
               <div class="card-footer">
                 <a href="#" class="pull-right">

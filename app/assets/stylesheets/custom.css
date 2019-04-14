@@ -19,3 +19,11 @@
     color: black;
     font-family: Avenir;
 }
+
+.hide {
+    display:none;
+}
+
+input[type='text'] {
+    color: #F7F7F7 !important;
+}
