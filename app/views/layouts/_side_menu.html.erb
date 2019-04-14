@@ -5,8 +5,27 @@
     <div class="nav-side-container">
       <ul class="navbar-nav flex-column">
         <%= render partial: 'layouts/side_menu_main_content' %>
-
-        <li class="nav-item">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to profile_user_path(current_user.id), class: 'nav-link' do %>
+              <%= fa_icon_tag('user', class: 'red') %>
+              <span>Profile</span>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to interfaces_path, class: 'nav-link' do %>
+              <%= fa_icon_tag('server') %>
+              <span>Interfaces</span>
+            <% end %>
+          </li>
+          <li class="nav-item hide">
+            <%= link_to dashboard_user_path(current_user.id), class: 'nav-link' do %>
+              <%= fa_icon_tag('dashboard') %>
+              <span>Dashboard</span>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="nav-item hide">
           <a class="nav-link" href="#" aria-expanded="false">
             <%= theme_icon_tag "layout-menu-v" %>
             <span>Multi-Level Menu</span>
@@ -35,7 +54,7 @@
                   <a href="#" class="nav-link">Third Level Item</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link"  aria-expanded="false">
+                  <a href="#" class="nav-link" aria-expanded="false">
                     <span>Fourth Level</span>
                     <span class="fa arrow"></span>
                   </a>

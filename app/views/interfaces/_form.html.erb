@@ -1,9 +1,31 @@
-
-<%= form_for(@interface, html: { class: 'form-horizontal' }) do |f| %>
+<%= form_for(@interface, html: {class: 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <div class="form-group row">
+      <%= f.label :ip, class: 'col-md-6 col-xs-12 control-label' do %>
+        IP Address
+        <%= f.text_field :ip, class: 'form-control', placeholder: 'ex: 192.168.1.1', required: true %>
+      <% end %>
+
+      <%= f.label :ddns, class: 'control-label col-md-6 col-xs-12' do %>
+        DDNS
+        <%= f.text_field :ddns, class: 'form-control', placeholder: 'Optional' %>
+      <% end %>
+    </div>
+    <div class="form-group row">
+      <%= f.label :hostname, class: 'control-label col-xs-12 col-md-6' do %>
+        Hostname
+        <%= f.text_field :hostname, class: 'form-control', placeholder: 'Optional' %>
+      <% end %>
+
+      <%= f.label :port, class: 'control-label col-xs-12 col-md-6' do %>
+        Port
+        <%= f.number_field :port, class: 'form-control', placeholder: 'Optional' %>
+      <% end %>
+    </div>
   </div>
+
 
   <div class="d-flex">
     <div class="ml-auto">

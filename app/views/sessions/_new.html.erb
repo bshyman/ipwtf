@@ -1,0 +1,70 @@
+<div class="modal fade" id="sign-in-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Sign In</h4>
+      </div>
+      <div class="modal-body">
+        <div class="errors red"></div>
+        <div class="row no-gutters">
+          <%= link_to google_login_path, class: 'col-sm-6 center google-login' do %>
+            <%= image_tag 'btn_google_signin_dark_normal_web.png' %>
+          <% end %>
+          <%= link_to root_path, class: 'col-sm-6 center' do %>
+            <%= image_tag 'facebook-login-btn.png' %>
+          <% end %>
+        </div>
+        <%= form_tag pw_login_path, id: 'login-form', class: 'form-inline', role: 'form' do %>
+          <div class="row ">
+            <span class="col-sm-6">
+              <%= label_tag :email, nil, class: 'sr-only' %>
+              <%= email_field_tag :email, nil, class: 'form-control', placeholder: 'Enter email' %>
+            </span>
+            <span class="col-sm-6">
+              <%= label_tag :password, nil, class: 'sr-only' %>
+              <%= password_field_tag :password, nil, class: 'form-control', placeholder: 'Enter password' %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-circle btn-outline-default" data-dismiss="modal">Close</button>
+        <div class="checkbox mb-sm-0 mr-2">
+          <input id="checkbox2" type="checkbox">
+          <label for="checkbox2">Remember Me</label>
+        </div>
+        <button type="submit" class="btn btn-circle btn-primary sign-in-btn">Sign in</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<style>
+  .google-login {
+    zoom: 104%;
+    bottom: 2px;
+    position: relative;
+  }
+</style>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('.sign-in-btn').on('click', function () {
+      $.ajax({
+        method: 'post',
+        url: '<%= pw_login_path %>',
+        data: $('form#login-form').serialize(),
+      }).always(function (response) {
+        console.log(response)
+        if(response.success) {
+          $.notify('Logged In');
+          debugger
+          window.location = '/dashboard_user_path/'.concat(response.success);
+        } else {
+          $('.errors').html(response.error)
+        }
+      })
+    })
+  })
+</script>

@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class InterfacesControllerTest < ActionDispatch::IntegrationTest
+  include CustomTestHelper
   setup do
-    @interface = interfaces(:one)
+    @user = Fabricate(:user)
+    fake_login(@user)
+    @interface = Fabricate(:interface)
   end
 
   test "should get index" do
@@ -17,7 +20,7 @@ class InterfacesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create interface" do
     assert_difference('Interface.count') do
-      post interfaces_url, params: { interface: {  } }
+      post interfaces_url, params: {interface: {id: @interface.id}}
     end
 
     assert_redirected_to interface_url(Interface.last)
@@ -34,7 +37,7 @@ class InterfacesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update interface" do
-    patch interface_url(@interface), params: { interface: {  } }
+    patch interface_url(@interface.id)
     assert_redirected_to interface_url(@interface)
   end
 

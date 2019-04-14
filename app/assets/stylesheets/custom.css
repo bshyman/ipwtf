@@ -1,0 +1,29 @@
+.center {
+    text-align: center;
+}
+
+.mt2 {
+    margin-top: 2em;
+}
+
+.mt1 {
+    margin-top: 1em;
+}
+
+.errors{
+    color: red;
+    font-weight: bold;
+}
+
+.black {
+    color: black;
+    font-family: Avenir;
+}
+
+.hide {
+    display:none;
+}
+
+input[type='text'] {
+    color: #F7F7F7 !important;
+}
