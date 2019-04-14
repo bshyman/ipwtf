@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootbox
 //= require bootstrap-notify
+//= require custom
 
 
 //= require rrt
