@@ -2,16 +2,43 @@
 
 <% content_for :description do %>
   <% end %>
+<div class="card">
+  <div class="card-body">
+    <%= render partial: 'form' %>
+  </div>
 
-  <div class="container">
-    <div class="row">
-      <div id="content" class="col-12 col-md-9">
-        <div class="card card-sheet">
-          <div class="card-body">
-            <%= render 'form' %>
-          </div>
-        </div>
-      </div>
+
+<!--  validation form decoration -->
+<!--<div class="card-body  ">-->
+<!--  <div class="form-group">-->
+<!--    <label class="control-label" for="inputSuccess1">Input with success</label>-->
+<!--    <input type="text" class="form-control is-valid"-->
+<!--    id="inputSuccess1" title="" autofill-prediction="UNKNOWN_TYPE">-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label class="control-label" for="inputError1">Input with error</label>-->
+<!--    <input type="text" class="form-control is-invalid"-->
+<!--    id="inputError1" title="" autofill-prediction="EMAIL_ADDRESS">-->
+<!--  </div>-->
+<!--  <hr>-->
+<!--  <legend>With Optional Icons</legend>-->
+<!--  <div class="form-group has-success has-feedback">-->
+<!--    <label class="control-label" for="inputSuccess2">Input with success</label>-->
+<!--    <div class="form-group has-success">-->
+<!--      <input type="email" value="Success Input" class="form-control form-control-success"-->
+<!--      title="" autofill-prediction="EMAIL_ADDRESS">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="form-group has-feedback">-->
+<!--    <div class="form-group has-danger">-->
+<!--      <input type="email" value="Error Input" class="form-control form-control-danger"-->
+<!--      title="" autofill-prediction="EMAIL_ADDRESS">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+</div>
 
 
 <!--      <div id="sidebar" class="col-12 col-md-3">-->
@@ -35,3 +62,6 @@
 
     </div>
   </div>
+
+
+
