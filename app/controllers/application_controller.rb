@@ -37,8 +37,7 @@ class ApplicationController < ActionController::Base
   
   def external_ip
     return session[:external_ip] if session[:external_ip].present?
-    session[:external_ip] = ExternalIPService.new.call
+    session[:external_ip] = ExternalIPService.new.get_external_ip
   end
-  
 
 end

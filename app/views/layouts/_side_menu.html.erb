@@ -6,6 +6,9 @@
       <ul class="navbar-nav flex-column">
         <%= render partial: 'layouts/side_menu_main_content' %>
         <% if user_signed_in? %>
+
+          <span id="external-ip" title="External IP" data-toggle="tooltip"><%= external_ip %></span>
+
           <li class="nav-item">
             <%= link_to profile_user_path(current_user.id), class: 'nav-link' do %>
               <%= fa_icon_tag('user', class: 'red') %>
@@ -83,3 +86,15 @@
     </div>
   </div>
 </nav>
+<style>
+  #external-ip {
+    text-align: center;
+    padding: 2px;
+    border-radius: 2px;
+    background-color: #2E354F;
+    color: #959FBD;
+    display:inline;
+    width: 50%;
+    margin:0  auto;
+  }
+</style>
