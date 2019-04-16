@@ -10,12 +10,11 @@
           <%= theme_icon_tag "menu" %>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Servers</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+<!--      <li class="nav-item">-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link disabled" href="#">Disabled</a>-->
+<!--      </li>-->
     </ul>
     <%= yield :navbar %>
     <ul class="nav navbar-nav">
@@ -70,7 +69,7 @@
                   <div class="media">
                     <%= random_avatar 32, "d-flex mr-3 rounded-circle" %>
                     <div class="media-body">
-                      <p><%= current_user.full_name %> registered..</p>
+<!--                      <p><%#= current_user&.full_name if _user_signed_in?%> registered..</p>-->
                       <small class="text-muted d-block"><%= current_user.created_at %></small>
                     </div>
                   </div>

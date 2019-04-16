@@ -2,12 +2,12 @@
   <div class="profile">
     <%= random_avatar 60, "rounded-circle profile-image" %>
     <div class="profile-body">
-      <h6><%= current_user.full_name %></h6>
+<!--      <h6><%#= current_user.full_name if user_signed_in? %></h6>-->
       <div class="user-links">
         <a class="btn btn-link" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="Profile">
           <%= theme_icon_tag "user" %>
         </a>
-        <a class="btn btn-link" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="Messages">
+        <a class="btn btn-link" href="mailto:bshyman@gmail.com'" data-placement="bottom" data-toggle="tooltip" data-original-title="Messages Eventually, Email me for now">
           <%= theme_icon_tag "email" %>
         </a>
         <a class="btn btn-link" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="Settings">

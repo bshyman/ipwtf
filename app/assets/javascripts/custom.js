@@ -10,3 +10,7 @@ function toggleValidity(element) {
     }
   })
 }
+
+function toggleSidebar(){
+  $('body').toggleClass('show-sidebar with-sidebar');
+}
