@@ -32,14 +32,18 @@
               <td><strong class="medtur"><%= interface.ip %></strong></td>
               <td><%= interface.ddns %></td>
               <td>
-                <span class="badge badge-<%= interface.alive? ? 'success' : 'danger' %>"><%= interface.ui_life_status %></span>
+                <span class="badge badge-<%= interface.last_response ? 'success' : 'danger' %>"><%= interface.ui_life_status %></span>
               </td>
               <td><%= interface.port %></td>
               <td>
                 <div class="center  btn-group-xs">
                   <i class="fa fa-sticky-note fa-2x"></i>
-                  <i class=" center fa fa-pencil fa-2x middle"></i>
-                  <i class=" center fa fa-trash fa-2x"></i>
+                  <%= link_to edit_interface_path(interface) do  %>
+                    <i class=" center fa fa-pencil fa-2x middle"></i>
+                  <% end %>
+                  <%= link_to interface_check_pulse_path(interface) do %>
+                    <i class="fa fa-refresh fa-2x"></i>
+                  <% end %>
                 </div>
               </td>
             </tr>

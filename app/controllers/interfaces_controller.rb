@@ -2,7 +2,7 @@ class InterfacesController < ApplicationController
   layout "application"
   layout 'sidenav'
 
-  before_action :set_interface, only: [:show, :edit, :update, :destroy]
+  before_action :set_interface, except: [:index, :create, :new]
 
   # GET /interfaces
   def index
@@ -11,8 +11,8 @@ class InterfacesController < ApplicationController
   end
 
   # GET /interfaces/1
-  def show
-  end
+  # def show
+  # end
 
   # GET /interfaces/new
   def new
@@ -27,8 +27,8 @@ class InterfacesController < ApplicationController
   def create
     @interface = Interface.new(interface_params)
     @interface.assign_attributes(user_id: current_user.id, last_responded_at: Time.current)
-    if @interface.save!
-      redirect_to @interface, notice: 'Interface was successfully created.'
+    if @interface.save
+      redirect_to interfaces_path, notice: 'Interface created.'
     else
       render :new
     end
@@ -38,7 +38,7 @@ class InterfacesController < ApplicationController
   def update
     @interface.assign_attributes(user_id: current_user.id, last_responded_at: Time.current)
     if @interface.update!(interface_params)
-      redirect_to @interface, notice: 'Interface was successfully updated.'
+      redirect_to @interface, notice: 'Interface was updated.'
     else
       render :edit
     end
@@ -47,13 +47,26 @@ class InterfacesController < ApplicationController
   # DELETE /interfaces/1
   def destroy
     @interface.destroy
-    redirect_to interfaces_url, notice: 'Interface was successfully destroyed.'
+    redirect_to interfaces_url, notice: 'Interface was destroyed.'
+  end
+
+  def check_pulse
+    result = ExternalIPService.new.check_for_life(@interface)
+    respond_to do |format|
+      format.html {redirect_to interfaces_path}
+      format.json do
+        render json: {status: result}
+      end
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_interface
-      @interface = Interface.find(params[:id])
+      @interface = Interface.find_by(id: params[:id])
+      if @interface.nil?
+        @interface = Interface.find_by(id: params[:interface_id])
+      end
     end
 
     # Only allow a trusted parameter "white list" through.

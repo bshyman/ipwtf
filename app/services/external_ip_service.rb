@@ -1,5 +1,6 @@
 require "net/http"
 require 'net/ping'
+
 class ExternalIPService
 
   def get_external_ip
@@ -11,5 +12,18 @@ class ExternalIPService
     check = Net::Ping::External.new(interface.ip)
     p 'PING#' + check.ping?.to_s
     check.ping?
+  end
+
+  def refresh_all_on_login
+    Interface.all.each(&:update_interface)
+  end
+
+  def update_interface(interface)
+    pulse = check_for_life(interface)
+    if pulse
+      interface.update!(last_response: pulse, last_responded_at: Time.current)
+    else
+      interface.update!(last_response: nil)
+    end
   end
 end

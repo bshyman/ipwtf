@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get 'home/landing'
 
-  resources :interfaces
+  resources :interfaces do
+    get 'check_pulse'
+
+  end
   resources :users do
     collection do
       get 'support'
