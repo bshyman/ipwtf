@@ -19,6 +19,7 @@ gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
 gem 'bootbox-rails', '~>0.4'
 gem 'pg'
+gem 'net-ping'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
