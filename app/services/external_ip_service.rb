@@ -15,7 +15,9 @@ class ExternalIPService
   end
 
   def refresh_all_on_login
-    Interface.all.each(&:update_interface)
+    Interface.all.each do |interface|
+      update_interface(interface)
+    end
   end
 
   def update_interface(interface)

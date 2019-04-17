@@ -7,7 +7,7 @@
 
         <%= link_to new_interface_path, class: 'btn btn-primary btn-circle add-interface' do %>
           Add Interface &nbsp;
-          <i class="fa fa-plus" style="color: #2E354F;"></i>
+          <i class="fa fa-plus" style="color: #2E354F;" ></i>
 
         <% end %>
 
@@ -42,7 +42,7 @@
                     <i class=" center fa fa-pencil fa-2x middle"></i>
                   <% end %>
                   <%= link_to interface_check_pulse_path(interface) do %>
-                    <i class="fa fa-refresh fa-2x"></i>
+                    <i class="fa fa-refresh fa-2x " data-id="<%= interface.id %>"></i>
                   <% end %>
                 </div>
               </td>
@@ -58,6 +58,17 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
+    $('.fa-refresh').on('click', function(e){
+      e.preventDefault();
+      let $this = $(this);
+      let id  = $this.data('id');
+      $this.addClass('fa-spin');
+      $.get('interfaces/' + id + '/check_pulse', {interface_id: id}).always(function(){
+        $this.removeClass('fa-spin');
+        // difficult jump to get to badge
+        $this.parents('td').siblings().children('span.badge').removeClass(('animated rubberBand')).addClass('animated rubberBand')
+      })
+    })
     $('.add-interface').on('click', function (e) {
     })
   })

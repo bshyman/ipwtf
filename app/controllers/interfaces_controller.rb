@@ -52,12 +52,7 @@ class InterfacesController < ApplicationController
 
   def check_pulse
     result = ExternalIPService.new.check_for_life(@interface)
-    respond_to do |format|
-      format.html {redirect_to interfaces_path}
-      format.json do
-        render json: {status: result}
-      end
-    end
+    render json: {status: result}
   end
 
   private
