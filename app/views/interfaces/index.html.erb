@@ -7,7 +7,7 @@
 
         <%= link_to new_interface_path, class: 'btn btn-primary btn-circle add-interface' do %>
           Add Interface &nbsp;
-          <i class="fa fa-plus" style="color: #2E354F;" ></i>
+          <i class="fa fa-plus" style="color: #2E354F;"></i>
 
         <% end %>
 
@@ -29,16 +29,22 @@
           <% @interfaces.each do |interface| %>
             <tr>
               <td>1</td>
-              <td><strong class="medtur"><%= interface.ip %></strong></td>
+              <td>
+                <strong class="medtur"><%= link_to interface.ip, 'http://' + interface.ip, target: '_blank', style: 'text-decoration:none;' %></strong>
+              </td>
               <td><%= interface.ddns %></td>
               <td>
-                <span class="badge badge-<%= interface.last_response ? 'success' : 'danger' %>"><%= interface.ui_life_status %></span>
+                <% if interface.last_response %>
+                  <span class="badge badge-success">Active</span>
+                <% else %>
+                  <span class="badge badge-danger"><%= time_ago_in_words(interface.last_responded_at) %></span>
+                <% end %>
               </td>
               <td><%= interface.port %></td>
               <td>
                 <div class="center  btn-group-xs">
-                  <i class="fa fa-sticky-note fa-2x"></i>
-                  <%= link_to edit_interface_path(interface) do  %>
+                  <i class="fa fa-sticky-note fa-2x notes-btn clickable" data-int="<%= interface.id %>"></i>
+                  <%= link_to edit_interface_path(interface) do %>
                     <i class=" center fa fa-pencil fa-2x middle"></i>
                   <% end %>
                   <%= link_to interface_check_pulse_path(interface) do %>
@@ -55,15 +61,16 @@
     </div>
   </div>
 </div>
+<%= render partial: 'notes/notes_modal', style: 'display:none;', id: 'notes-partial' %>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    $('.fa-refresh').on('click', function(e){
+    $('.fa-refresh').on('click', function (e) {
       e.preventDefault();
       let $this = $(this);
-      let id  = $this.data('id');
+      let id = $this.data('id');
       $this.addClass('fa-spin');
-      $.get('interfaces/' + id + '/check_pulse', {interface_id: id}).always(function(){
+      $.get('interfaces/' + id + '/check_pulse', {interface_id: id}).always(function () {
         $this.removeClass('fa-spin');
         // difficult jump to get to badge
         $this.parents('td').siblings().children('span.badge').removeClass(('animated rubberBand')).addClass('animated rubberBand')
@@ -71,15 +78,29 @@
     })
     $('.add-interface').on('click', function (e) {
     })
+
+    $('.notes-btn').on('click', function () {
+      $('#notes-partial').show();
+      let id = $(this).data('int');
+      console.log(id)
+      $.get('interfaces/' + id + '/notes/').done(function (response) {
+        $('#notes-modal').modal('show');
+        $('#notes-modal .modal-body').html(response)
+      }).fail(function () {
+        $.notify('Error')
+      })
+    })
   })
 </script>
 <style>
   .medtur {
     color: mediumturquoise;
   }
+
   .fa {
     color: mediumturquoise;
   }
+
   .middle {
     margin: 0 20px;
   }
