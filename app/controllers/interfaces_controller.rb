@@ -38,7 +38,7 @@ class InterfacesController < ApplicationController
   def update
     @interface.assign_attributes(user_id: current_user.id, last_responded_at: Time.current)
     if @interface.update!(interface_params)
-      redirect_to @interface, notice: 'Interface was updated.'
+      redirect_to @interface, notice: 'Saved.'
     else
       render :edit
     end
