@@ -1,0 +1,39 @@
+<%= form_with url: interface_notes_path, class: 'note-form' do |f| %>
+  <%= f.label :content, class: 'control-label' do %>
+    <%= f.text_field :content, class: 'form-control' %>
+  <% end %>
+  <div class="checkbox checkbox-success form-check form-check-inline">
+    <input id="encrypted" type="checkbox">
+    <label for="encrypted" style="margin-left:15px;">Encrypt it</label>
+  </div>
+
+  <div class="modal-footer">
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-9 col-md-3 pull-right">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Save', class: 'save-btn btn btn-success btn-fill' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<% end %>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $('.save-btn').on('click', function (e) {
+      e.preventDefault();
+      let $form = $('form.note-form');
+      let url = '<%= interface_notes_path(@interface) %>';
+      let data = $form.serialize();
+      $.post(url, data).always(function (response) {
+        $.notify(response.notice);
+        $('#notes-modal').modal('hide');
+      })
+    })
+  })
+</script>
