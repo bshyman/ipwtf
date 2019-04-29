@@ -10,10 +10,12 @@ class InterfacesController < ApplicationController
   end
 
   def new
+    @body_class = 'with-sidebar show-sidebar'
     @interface = Interface.new
   end
 
   def edit
+    @body_class = 'with-sidebar show-sidebar'
   end
 
   def create
@@ -30,8 +32,9 @@ class InterfacesController < ApplicationController
   def update
     @interface.assign_attributes(user_id: current_user.id, last_responded_at: Time.current)
     if @interface.update!(interface_params)
-      redirect_to @interface, notice: 'Saved.'
+      redirect_to interfaces_path, notice: 'Changes Saved..'
     else
+      flash.now[:error] = 'erroredit'
       render :edit
     end
   end

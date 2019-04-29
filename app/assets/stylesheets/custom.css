@@ -31,3 +31,7 @@ input[type='text'] {
 .clickable {
     cursor: pointer;
 }
+
+.mb2 {
+    margin-bottom: 2em;
+}

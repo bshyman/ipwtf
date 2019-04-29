@@ -1,4 +1,4 @@
-<nav class="nav-side-menu   navbar-expand-lg">
+<nav class="nav-side-menu   navbar-expand-lg" >
   <%= render partial: 'layouts/side_menu_header' %>
 
   <div id="menu-content" class="navbar-collapse collapse">
@@ -16,17 +16,23 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to interfaces_path, class: 'nav-link' do %>
-              <%= fa_icon_tag('server') %>
-              <span>Interfaces</span>
-            <% end %>
-          </li>
-          <li class="nav-item hide">
-            <%= link_to dashboard_user_path(current_user.id), class: 'nav-link' do %>
-              <%= fa_icon_tag('dashboard') %>
-              <span>Dashboard</span>
-            <% end %>
-          </li>
+            <a class="nav-link" href="#" aria-expanded="false">
+              <%#= theme_icon_tag "layout-menu-v" %>
+              <i class="fa fa-server"></i>
+              <span>Addresses</span>
+              <span class="fa arrow"></span>
+            </a>
+            <ul class="nav-item nav-second-level collapse" aria-expanded="false">
+              <li class="nav-item">
+                <%= link_to 'Add Address', new_interface_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item hide">
+                <%= link_to dashboard_user_path(current_user.id), class: 'nav-link' do %>
+                  <%= fa_icon_tag('dashboard') %>
+                  <span>Dashboard</span>
+                <% end %>
+              </li>
+            </ul>
         <% end %>
         <li class="nav-item hide">
           <a class="nav-link" href="#" aria-expanded="false">
@@ -82,7 +88,7 @@
           </ul>
           <!-- /.nav-second-level -->
         </li>
-      </ul>
+        </ul>
     </div>
   </div>
 </nav>
@@ -93,8 +99,8 @@
     border-radius: 2px;
     background-color: #2E354F;
     color: #959FBD;
-    display:inline;
+    display: inline;
     width: 50%;
-    margin:0  auto;
+    margin: 0 auto 2em auto;
   }
 </style>

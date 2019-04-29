@@ -2,16 +2,13 @@
   <div class="col-12">
     <div class="card card-default position-relative inspectable">
       <!-- component-title: Active Users Table -->
-      <div class="card-header">
-        <h6>Interfaces</h6>
-
-        <%= link_to new_interface_path, class: 'btn btn-primary btn-circle add-interface' do %>
-          Add Interface &nbsp;
-          <i class="fa fa-plus" style="color: #2E354F;"></i>
-
-        <% end %>
-
-      </div>
+<!--      <div class="card-header">-->
+<!--        <h6>Addresses</h6>-->
+        <%#= link_to new_interface_path, class: 'btn btn-primary btn-circle add-interface' do %>
+<!--          Add Interface &nbsp;-->
+<!--          <i class="fa fa-plus" style="color: #2E354F;"></i>-->
+        <%# end %>
+<!--      </div>-->
       <div class="table-responsive">
         <table class="table table-hover table-striped">
           <thead>
@@ -28,9 +25,9 @@
           <tbody>
           <% @interfaces.each do |interface| %>
             <tr>
-              <td>1</td>
+              <td><%= interface.id %></td>
               <td>
-                <strong class="medtur"><%= link_to interface.ip, 'http://' + interface.ip_port, target: '_blank', style: 'text-decoration:none;' %></strong>
+                <strong class=""><%= link_to interface.ip, 'http://' + interface.ip_port, target: '_blank', style: 'text-decoration:none;color:#959FBD;' %></strong>
               </td>
               <td><%= interface.ddns %></td>
               <td>
@@ -93,12 +90,9 @@
   })
 </script>
 <style>
-  .medtur {
-    color: mediumturquoise;
-  }
 
   .fa {
-    color: mediumturquoise;
+    color: #959FBD;
   }
 
   .middle {
