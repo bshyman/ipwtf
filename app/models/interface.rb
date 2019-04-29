@@ -16,4 +16,8 @@ class Interface < ApplicationRecord
   def ui_life_status
     last_response.present? ? 'Active' : 'Dead'
   end
+
+   def ip_port
+    port ? self.ip + ':' + self.port.to_s : self.ip
+  end
 end
