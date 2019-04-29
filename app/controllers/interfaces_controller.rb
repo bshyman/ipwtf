@@ -4,26 +4,18 @@ class InterfacesController < ApplicationController
 
   before_action :set_interface, except: [:index, :create, :new]
 
-  # GET /interfaces
   def index
     @body_class = 'with-sidebar show-sidebar'
-    @interfaces = Interface.all
+    @interfaces = Interface.all.order(ip: :asc)
   end
 
-  # GET /interfaces/1
-  # def show
-  # end
-
-  # GET /interfaces/new
   def new
     @interface = Interface.new
   end
 
-  # GET /interfaces/1/edit
   def edit
   end
 
-  # POST /interfaces
   def create
     @interface = Interface.new(interface_params)
     @interface.assign_attributes(user_id: current_user.id, last_responded_at: Time.current)
@@ -54,6 +46,7 @@ class InterfacesController < ApplicationController
     result = ExternalIPService.new.check_for_life(@interface)
     render json: {status: result}
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
