@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     get 'check_pulse'
   end
 
+
   resources :users do
+    get 'settings', to: 'settings#edit'
+    put 'update', to: 'settings#update'
     collection do
       get 'support'
       get 'plan'

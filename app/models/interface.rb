@@ -1,6 +1,7 @@
 class Interface < ApplicationRecord
   belongs_to :user
   has_many :notes
+  has_one :settings
   attr_accessor :hostname
 
   validates_format_of :ip, with: /(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])/,

@@ -3,7 +3,7 @@ require 'bcrypt'
 class User < ApplicationRecord
   include BCrypt
   has_many :interfaces
-
+  has_one :settings
   def full_name
     first_name + ' ' + last_name
   end
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   end
 
   def self.create_with_omniauth(auth)
-    create! do |user|
+    new_user = create! do |user|
       user.first_name = auth.info.first_name
       user.last_name  = auth.info.last_name
       user.avatar     = auth.info.image
@@ -28,6 +28,7 @@ class User < ApplicationRecord
       user.uid        = auth['uid']
       user.password   = SecureRandom.hex(10)
     end
+    Settings.create!(user_id: new_user.id)
   end
 
   def name

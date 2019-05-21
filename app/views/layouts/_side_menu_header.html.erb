@@ -1,7 +1,9 @@
 <div class="navbar-header d-none d-lg-block">
   <div class="profile">
     <%#= random_avatar 60, "rounded-circle profile-image" %>
-    <%= image_tag '/assets/ipwtf-logo.png', style: 'max-width: 85%; margin: auto;' %>
+    <%= link_to interfaces_path do %>
+      <%= image_tag '/assets/ipwtf-logo.png', style: 'margin: auto;', class:'ipwtf-logo' %>
+    <% end %>
 <!--    <div class="profile-body">-->
 <!--      <h6><%#= current_user.full_name if user_signed_in? %></h6>-->
 <!--      <div class="user-links">-->

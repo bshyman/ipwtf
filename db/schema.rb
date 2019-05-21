@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190321012926) do
+ActiveRecord::Schema.define(version: 20190429035011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,31 @@ ActiveRecord::Schema.define(version: 20190321012926) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "nickname"
+    t.string "last_external_ip"
+    t.string "last_response"
     t.index ["user_id"], name: "index_interfaces_on_user_id"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string "type"
+    t.text "content"
+    t.integer "created_by"
+    t.bigint "interface_id"
+    t.boolean "encrypted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interface_id"], name: "index_notes_on_interface_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.integer "refresh_interval"
+    t.string "theme"
+    t.boolean "unsubscribed", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_settings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -31,7 +31,8 @@ class ExternalIPService
 
   def refresh_all_on_login
     Interface.all.each do |interface|
-      update_interface(interface)
+      pulse = check_for_life(interface)
+      update_interface(interface, pulse)
     end
   end
 

@@ -35,3 +35,18 @@ input[type='text'] {
 .mb2 {
     margin-bottom: 2em;
 }
+
+.pull-right {
+    float: right !important;
+}
+
+.ml1 {
+    margin-left: 1em;
+}
+.mlh {
+    margin-left: 0.5em;
+}
+
+.modal-content {
+    background-color: #353A3F !important;
+}
