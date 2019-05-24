@@ -80,7 +80,7 @@
       $('#notes-partial').show();
       let id = $(this).data('int');
       console.log(id)
-      $.get('interfaces/' + id + '/notes/').done(function (response) {
+      $.get('/interfaces/' + id.toString() + '/notes').done(function (response) {
         $('#notes-modal').modal('show');
         $('#notes-modal .modal-body').html(response)
       }).fail(function () {
