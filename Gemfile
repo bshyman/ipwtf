@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'bootbox-rails', '~>0.4'
 gem 'pg'
 gem 'net-ping'
+gem 'bcrypt'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -36,7 +37,6 @@ group :development do
   gem 'foreman'
   gem 'rails_layout'
   gem 'binding_of_caller'
-  gem 'bcrypt'
 end
 
 group :development, :test do
