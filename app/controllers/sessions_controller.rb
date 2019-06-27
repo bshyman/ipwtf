@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     user.update!(avatar: auth['info']['image']) unless user.avatar.present?
     reset_session
     session[:user_id] = user.id
-    ExternalIPService.new.refresh_all_on_login
+    # ExternalIPService.new.refresh_all_on_login
     redirect_to interfaces_path, notice: 'Signed in!'
   end
 
